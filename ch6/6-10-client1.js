@@ -1,6 +1,8 @@
-import { acquireReading, baseRate } from './6-10.js';
+import { acquireReading, enrichReading } from './6-10.js';
+//enrich + ... : 받아온 데이터에 좀더 계산된 새로운 데이터를 덧붙여서 리턴하는 함수
 
-const aReading = acquireReading();
+const rawReading = acquireReading();
+const reading = enrichReading(rawReading);
 
-const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity;
-console.log(baseCharge);
+console.log(reading.baseCharge);
+console.log(reading.taxableCharge);
