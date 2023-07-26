@@ -1,20 +1,17 @@
+/**
+ * 참인 경로, 거짓인 경로 모두 정상 동작일 경우, if...else 절 활용
+ * 한쪽만 정상, 다른 한쪽은 비정상인 경우 비정상인 경우를 return하여 함수를 빠져나온다. (=== 보호 구문 )
+ */
 export function payAmount(employee) {
-  let result;
   if (employee.isSeparated) {
-    result = { amount: 0, reasonCode: 'SEP' };
-  } else {
-    if (employee.isRetired) {
-      result = { amount: 0, reasonCode: 'RET' };
-    } else {
-      // lorem.ipsum(dolor.sitAmet);
-      // consectetur(adipiscing).elit();
-      // sed.do.eiusmod = tempor.incididunt.ut(labore) && dolore(magna.aliqua);
-      // ut.enim.ad(minim.veniam);
-      result = someFinalComputation();
-      return result;
-    }
+    //보호구문
+    return { amount: 0, reasonCode: 'SEP' };
   }
-  return result;
+  if (employee.isRetired) {
+    //보호구문
+    return { amount: 0, reasonCode: 'RET' };
+  }
+  return someFinalComputation();
 }
 
 function someFinalComputation() {
