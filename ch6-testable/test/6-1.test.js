@@ -1,4 +1,4 @@
-import { printOwing } from '../6-1';
+import { Owing, printOwing } from '../6-1';
 
 class Console {
   #content = '';
@@ -48,7 +48,7 @@ describe('printOwing', () => {
     const console = new Console();
     const clock = new Clock();
 
-    printOwing(invoice, console, clock);
+    printOwing(console, new Owing(invoice, clock));
     expect(console.content).toBe(expected);
   });
 });
