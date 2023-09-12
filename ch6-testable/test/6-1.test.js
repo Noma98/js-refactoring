@@ -1,5 +1,31 @@
 import { printOwing } from '../6-1';
 
+class Console {
+  #content = '';
+  constructor() {}
+  log(message) {
+    this.#content += `${message}\n`;
+  }
+  get content() {
+    return this.#content;
+  }
+}
+class Clock {
+  constructor() {}
+  get today() {
+    return {
+      getFullYear() {
+        return 2022;
+      },
+      getMonth() {
+        return 0;
+      },
+      getDate() {
+        return 21;
+      },
+    };
+  }
+}
 /**
  * describe
  *  테스트 그룹화. 테스트하려는 함수, 모듈을 그 안에 작성.
@@ -17,7 +43,12 @@ describe('printOwing', () => {
       '***********************\n' +
       'name: 엘리\n' +
       'amount: 7\n' +
-      'due: 2/20/2022\n';
-    expect(printOwing(invoice)).toBe(expected);
+      'due: 2022. 2. 20.\n';
+
+    const console = new Console();
+    const clock = new Clock();
+
+    printOwing(invoice, console, clock);
+    expect(console.content).toBe(expected);
   });
 });
